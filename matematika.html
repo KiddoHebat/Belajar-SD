@@ -1,0 +1,62 @@
+<div id="bintang" style="font-size:20px; margin:10px;">
+  ⭐ 0 Bintang
+</div>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Matematika - Kelas 3</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      padding: 20px;
+    }
+    .lesson {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+    .done { border-left: 8px solid #6BBF59; }
+    .lock { opacity: 0.5; }
+  </style>
+</head>
+<body>
+
+<h2>📘 Matematika - Kelas 3</h2>
+<p>Level 1: Perkalian</p>
+
+<a href="lesson1.html" style="text-decoration:none; color:black;">
+  <div class="lesson done">
+    ✅ Lesson 1: Perkalian Bilangan 1-100
+  </div>
+</a>
+
+
+<div class="lesson done">
+  ✅ Lesson 2: Perkalian Bilangan > 100
+</div>
+
+<a href="quiz1.html" style="text-decoration:none; color:black;">
+  <div class="lesson">
+    📝 Lesson 3: Quiz
+  </div>
+</a>
+
+<script>
+window.onload = function () {
+  const bintang = localStorage.getItem("bintang_matematika");
+  if (bintang) {
+    document.getElementById("bintang").innerHTML = "⭐ " + bintang + " Bintang";
+  }
+};
+</script>
+
+</body>
+
+
+
+
+</html>

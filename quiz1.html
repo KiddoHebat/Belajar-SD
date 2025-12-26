@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Kuis Matematika</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #eaf6ff;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      width: 320px;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    #soalBox p {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background-color: #58cc02;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #46b700;
+    }
+
+    #selesaiBtn {
+      background-color: #ffd43b;
+      color: #333;
+      font-weight: bold;
+      display: none;
+    }
+
+    .popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-box {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  animation: pop 0.4s ease;
+}
+
+.popup-box h1 {
+  font-size: 36px;
+  color: #58cc02;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h2>🧮 Level 1: Perkalian</h2>
+
+    <div id="soalBox"></div>
+    <div id="jawabanBox"></div>
+
+    <button id="selesaiBtn" onclick="selesaiLevel()">
+      🎉 Selesai Level
+    </button>
+
+  </div>
+</div>
+
+<script>
+const soal = [
+  {
+    tanya: "2 × 3 = ?",
+    jawaban: ["6", "5", "7"],
+    benar: "6"
+  },
+  {
+    tanya: "3 × 4 = ?",
+    jawaban: ["12", "10", "14"],
+    benar: "12"
+  },
+  {
+    tanya: "4 × 5 = ?",
+    jawaban: ["20", "15", "25"],
+    benar: "20"
+  }
+];
+
+let index = 0;
+
+
+function tampilkanSoal() {
+  document.getElementById("soalBox").innerHTML =
+    `<p>Soal ${index + 1}: ${soal[index].tanya}</p>`;
+
+  let tombol = "";
+  soal[index].jawaban.forEach(j => {
+    tombol += `<button onclick="cekJawaban('${j}')">${j}</button>`;
+  });
+
+  document.getElementById("jawabanBox").innerHTML = tombol;
+}
+
+ function cekJawaban(jawaban) {
+  if (jawaban === soal[index].benar) {
+    jawabanTerakhirBenar = true;
+
+    document.getElementById("soundBenar").currentTime = 0;
+    document.getElementById("soundBenar").play();
+
+    document.getElementById("popupText").innerText = "✅ Benar!";
+    document.getElementById("popupSoal").style.display = "flex";
+  } else {
+    jawabanTerakhirBenar = false;
+
+    document.getElementById("soundSalah").currentTime = 0;
+    document.getElementById("soundSalah").play();
+
+    document.getElementById("popupText").innerText = "❌ Coba lagi ya";
+    document.getElementById("popupSoal").style.display = "flex";
+  }
+}
+
+
+function tutupPopupSoal() {
+  document.getElementById("popupSoal").style.display = "none";
+
+  if (jawabanTerakhirBenar) {
+    index++;
+
+    if (index < soal.length) {
+      tampilkanSoal();
+    } else {
+  const levelSound = document.getElementById("soundLevel");
+  levelSound.currentTime = 0;
+  levelSound.play();
+
+  document.getElementById("popupHebat").style.display = "flex";
+}
+  }
+}
+
+
+
+function selesaiLevel() {
+  localStorage.setItem("bintang_matematika", "1");
+  
+  window.location.href = "matematika.html";
+}
+
+tampilkanSoal();
+</script>
+
+<!-- POPUP HEBAT -->
+<div id="popupHebat" class="popup">
+  <div class="popup-box">
+    <h1>🎉 HEBAT!</h1>
+    <p>Kamu menyelesaikan level ini ⭐</p>
+    <button onclick="selesaiLevel()">Selesai Level</button>
+  </div>
+</div>
+<!-- POPUP PER SOAL -->
+<div id="popupSoal" class="popup">
+  <div class="popup-box">
+    <h2 id="popupText">Benar!</h2>
+    <button onclick="tutupPopupSoal()">Lanjut</button>
+  </div>
+</div>
+
+<!-- POPUP PER SOAL -->
+<div id="popupSoal" class="popup">
+  <div class="popup-box">
+    <h2 id="popupText">Benar!</h2>
+    <button onclick="tutupPopupSoal()">Lanjut</button>
+  </div>
+</div>
+
+<audio id="soundBenar" src="sounds/benar.mp3"></audio>
+<audio id="soundSalah" src="sounds/salah.mp3"></audio>
+
+<audio id="soundLevel" src="sounds/level.mp3" preload="auto"></audio>
+
+</body>
+</html>
+
+
