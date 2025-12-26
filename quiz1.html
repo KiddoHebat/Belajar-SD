@@ -98,6 +98,11 @@
 
 <body>
 
+    <div id="audioGate" class="audio-gate">
+  <button onclick="aktifkanAudio()">🔊 Mulai</button>
+</div>
+
+
 <div class="container">
   <div class="card">
 
@@ -195,6 +200,16 @@ function selesaiLevel() {
 }
 
 tampilkanSoal();
+
+function aktifkanAudio() {
+  document.getElementById("soundBenar").play().catch(()=>{});
+  document.getElementById("soundSalah").play().catch(()=>{});
+  document.getElementById("soundLevel").play().catch(()=>{});
+
+  document.getElementById("audioGate").style.display = "none";
+}
+
+
 </script>
 
 <!-- POPUP HEBAT -->
@@ -227,6 +242,7 @@ tampilkanSoal();
 <audio id="soundLevel" src="sounds/level.mp3" preload="auto"></audio>
 
 </body>
+
 </html>
 
 
