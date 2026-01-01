@@ -94,15 +94,14 @@
 }
 
   </style>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+  
 </head>
 
 <body>
 
     <div id="audioGate" class="audio-gate">
-  <button onclick="aktifkanAudio()">🔊 Mulai</button>
+ 
 </div>
 
 
@@ -212,6 +211,21 @@ function aktifkanAudio() {
   document.getElementById("audioGate").style.display = "none";
 }
 
+// BACKGROUND MUSIC
+const bgMusic = new Audio("sounds/bg-music.mp3");
+bgMusic.loop = true;
+bgMusic.volume = 0.3;
+let musicOn = true;
+
+function toggleMusic() {
+  if (musicOn) {
+    bgMusic.pause();
+  } else {
+    bgMusic.play();
+  }
+  musicOn = !musicOn;
+}
+
 
 </script>
 
@@ -243,6 +257,17 @@ function aktifkanAudio() {
 <audio id="soundSalah" src="sounds/salah.mp3"></audio>
 
 <audio id="soundLevel" src="sounds/level.mp3" preload="auto"></audio>
+
+
+<script>
+  const bgMusic = new Audio("sounds/bg-music.mp3");
+  bgMusic.loop = true;
+  bgMusic.volume = 0.3;
+
+  document.body.addEventListener("click", () => {
+    bgMusic.play();
+  }, { once: true });
+</script>
 
 </body>
 

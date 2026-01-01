@@ -1,117 +1,156 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>KIDDOS HEBAT!!</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-  * {
-    box-sizing: border-box;
-  }
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 480px;
-    margin: auto;
-    padding: 16px;
-  }
-
-  button {
-    width: 100%;
-    padding: 14px;
-    font-size: 1.1rem;
-    border-radius: 12px;
-  }
-</style>
-
+  <!-- WAJIB untuk HP -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      padding: 20px;
+    * {
+      box-sizing: border-box;
     }
+
+    body {
+      
+      margin: 0;
+      padding: 0;
+      font-family: verdana, sans-serif;
+      background: #a6aebe;
+    }
+
+    .container {
+      width: 60%;
+      max-width: 480px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    button {
+      width: 60%;
+      padding: 14px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      border: none;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
     .card {
       padding: 20px;
       border-radius: 15px;
       color: white;
       margin-bottom: 15px;
+      font-size: 1.1rem;
     }
+
     .math { background: #4A90E2; }
-    .ipa { background: #6BBF59; }
-    .ips { background: #F5A623; }
+    .ipa  { background: #6BBF59; }
+    .ips  { background: #F5A623; }
+    .umum { background: #bf59ba; }
+
+    .subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  margin: 16px 0 24px 0;
+}
+
   </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 </head>
+
 <body>
 
-
-  <script>
-  let soundAktif = false;
-
-  document.body.addEventListener("click", () => {
-    soundAktif = true;
-  }, { once: true });
-
-  const soundBenar = new Audio("sounds/benar.mp3");
-  const soundSalah = new Audio("sounds/salah.mp3");
-
-  function jawabanBenar() {
-    if (soundAktif) soundBenar.play();
-  }
-
-  function jawabanSalah() {
-    if (soundAktif) soundSalah.play();
-  }
-</script>
+  <div id="welcomeScreen" style="
+  position: fixed;
+  inset: 0;
+  background: #4A90E2;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+">
+  <h1>🎉 Selamat Datang!</h1>
+  <p>Tap untuk mulai belajar 🚀</p>
+  <button style="
+    padding: 16px 24px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    border: none;
+  ">
+    MULAI
+  </button>
+</div>
 
 
   <div class="container"></div>
 
-  <h2>Halo 👋</h2>
-  <p>Ayo belajar hari ini!</p>
-
-  <h2>Halo 👋</h2>
-<p>Ayo belajar hari ini!</p>
-
-<button onclick="jawabanBenar()">🔊 Test Suara Benar</button>
-<br><br>
-<button onclick="jawabanSalah()">🔊 Test Suara Salah</button>
 
 
+  <h2>Halo Kiddos Hebat  👋</h2>
+ <div class="subtitle">
+  Mau belajar apa hari ini?
+</div>
 
-    <a href="matematika.html" style="text-decoration:none;">
+
+     <a href="matematika.html" style="text-decoration:none;">
   <div class="card math">
     📘 Matematika <br>
-    ⭐⭐⭐☆☆
-  </div>
-</a>
-
-    📘 Matematika <br>
-    ⭐⭐⭐☆☆
+    ☆☆☆☆☆☆
   </div>
 
   <div class="card ipa">
     🔬 IPA <br>
-    ⭐⭐☆☆☆
+    ☆☆☆☆☆☆
   </div>
 
   <div class="card ips">
     🌍 IPS <br>
-    ⭐☆☆☆☆
+    ☆☆☆☆☆☆☆
   </div>
+
+  <div class="card umum">
+    🌍 UMUM <br>
+    ☆☆☆☆☆☆☆
+  </div>
+
+<script>
+  // ===== AUDIO =====
+  const welcomeSound = new Audio("sounds/intro.mp3");
+  const bgMusic = new Audio("sounds/bg-music.mp3");
+
+  bgMusic.loop = true;
+  bgMusic.volume = 0.3;   // lembut untuk anak SD
+
+  // ===== AKTIFKAN SETELAH HTML SIAP =====
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const welcomeScreen = document.getElementById("welcomeScreen");
+
+    if (welcomeScreen) {
+      welcomeScreen.addEventListener("click", () => {
+        welcomeSound.currentTime = 0;
+        welcomeSound.play();
+
+        bgMusic.currentTime = 0;
+        bgMusic.play();
+
+        welcomeScreen.style.display = "none";
+      });
+    }
+
+  });
+</script>
+
+
 
 </body>
 </html>

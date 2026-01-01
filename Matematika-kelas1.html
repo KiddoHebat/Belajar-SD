@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matematika Kelas 1</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  padding: 16px;
+}
+
+h2, p {
+  text-align: center;
+}
+
+.lesson {
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lesson.locked {
+  opacity: 0.5;
+}
+</style>
+</head>
+
+<body>
+
+<h2>📘 Matematika Kelas 1</h2>
+<p>Pilih pelajaran</p>
+
+<div class="lesson" onclick="goLesson(1)">
+  Lesson 1: Mengenal Angka
+  ⭐
+</div>
+
+<div class="lesson locked">
+  Lesson 2: Penjumlahan
+  🔒
+</div>
+
+<div class="lesson locked">
+  Lesson 3: Pengurangan
+  🔒
+</div>
+
+<script>
+function goLesson(no) {
+  window.location.href = "matematika-kelas1-lesson" + no + ".html";
+}
+</script>
+
+</body>
+</html>

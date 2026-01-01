@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 1</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  padding: 16px;
+}
+
+.question-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border-radius: 12px;
+  font-size: 1rem;
+  border: none;
+}
+
+.option-btn {
+  background: #eef2ff;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-success {
+  background: #2ecc71;
+  color: white;
+  padding: 24px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 320px;
+  text-align: center;
+}
+
+.popup-fail {
+  background: #e74c3c;
+  color: white;
+  padding: 24px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 320px;
+  text-align: center;
+}
+
+.popup button {
+  background: white;
+  margin-top: 10px;
+}
+
+.explanation-box {
+  background: white;
+  border: 3px solid #2ecc71;
+  padding: 16px;
+  border-radius: 14px;
+  margin-top: 12px;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<h2>📘 Lesson 1</h2>
+
+<div class="question-card">
+  <h3 id="question">Loading...</h3>
+  <div id="options"></div>
+  <div id="explanation" class="explanation-box hidden"></div>
+</div>
+
+<!-- POPUP BENAR -->
+<div id="popupCorrect" class="popup hidden">
+  <div class="popup-success">
+    <h2>🎉 Hebat!</h2>
+    <button onclick="showExplanation()">📖 Lihat Penjelasan</button>
+    <button onclick="nextQuestion()">➡️ Lanjut</button>
+  </div>
+</div>
+
+<!-- POPUP SALAH -->
+<div id="popupWrong" class="popup hidden">
+  <div class="popup-fail">
+    <h2>❌ Coba lagi</h2>
+    <button onclick="closeWrong()">🔄 Ulangi</button>
+  </div>
+</div>
+
+<script>
+let questions = [];
+let current = 0;
+
+// LOAD CSV
+fetch("data/bank_kelas1_lesson1.csv")
+  .then(res => res.text())
+  .then(text => {
+    const rows = text.trim().split("\n").slice(1);
+    rows.forEach(row => {
+      const c = row.split(",");
+      questions.push({
+        text: c[0],
+        options: [c[1], c[2], c[3]],
+        correct: c[4],
+        explanation: c[5]
+      });
+    });
+
+    shuffle(questions);
+    loadQuestion();
+  });
+
+function shuffle(arr) {
+  arr.sort(() => Math.random() - 0.5);
+}
+
+function loadQuestion() {
+  document.getElementById("explanation").classList.add("hidden");
+  const q = questions[current];
+  document.getElementById("question").innerText = q.text;
+
+  const optDiv = document.getElementById("options");
+  optDiv.innerHTML = "";
+
+  q.options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.innerText = opt;
+    btn.onclick = () => checkAnswer(opt);
+    optDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(ans) {
+  if (ans == questions[current].correct) {
+    document.getElementById("popupCorrect").classList.remove("hidden");
+  } else {
+    document.getElementById("popupWrong").classList.remove("hidden");
+  }
+}
+
+function closeWrong() {
+  document.getElementById("popupWrong").classList.add("hidden");
+}
+
+function showExplanation() {
+  document.getElementById("popupCorrect").classList.add("hidden");
+  const box = document.getElementById("explanation");
+  box.innerText = questions[current].explanation;
+  box.classList.remove("hidden");
+}
+
+function nextQuestion() {
+  document.getElementById("popupCorrect").classList.add("hidden");
+  current++;
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    alert("🏆 Lesson selesai!");
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,65 +1,74 @@
-<div id="bintang" style="font-size:20px; margin:10px;">
-  ⭐ 0 Bintang
-</div>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Matematika - Kelas 3</title>
+  <title>Matematika</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #f5f7fb;
+      margin: 0;
+      padding: 16px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #555;
+    }
+
+    .kelas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .kelas-card {
+      background: #4A90E2;
+      color: white;
       padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
     }
-    .lesson {
-      background: white;
-      padding: 15px;
-      border-radius: 12px;
-      margin-bottom: 12px;
+
+    .kelas-card:active {
+      transform: scale(0.96);
     }
-    .done { border-left: 8px solid #6BBF59; }
-    .lock { opacity: 0.5; }
   </style>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
+
 <body>
 
-<h2>📘 Matematika - Kelas 3</h2>
-<p>Level 1: Perkalian</p>
+  <h2>📘 Matematika</h2>
+  <p>Pilih kelas kamu</p>
 
-<a href="lesson1.html" style="text-decoration:none; color:black;">
-  <div class="lesson done">
-    ✅ Lesson 1: Perkalian Bilangan 1-100
+  <div class="kelas-grid">
+    <div class="kelas-card" onclick="goKelas(1)">Kelas 1</div>
+    <div class="kelas-card" onclick="goKelas(2)">Kelas 2</div>
+    <div class="kelas-card" onclick="goKelas(3)">Kelas 3</div>
+    <div class="kelas-card" onclick="goKelas(4)">Kelas 4</div>
+    <div class="kelas-card" onclick="goKelas(5)">Kelas 5</div>
+    <div class="kelas-card" onclick="goKelas(6)">Kelas 6</div>
+    <div class="kelas-card" onclick="goKelas(7)">Kelas 7</div>
+    <div class="kelas-card" onclick="goKelas(8)">Kelas 8</div>
+    <div class="kelas-card" onclick="goKelas(9)">Kelas 9</div>
   </div>
-</a>
 
-
-<div class="lesson done">
-  ✅ Lesson 2: Perkalian Bilangan > 100
-</div>
-
-<a href="quiz1.html" style="text-decoration:none; color:black;">
-  <div class="lesson">
-    📝 Lesson 3: Quiz
-  </div>
-</a>
-
-<script>
-window.onload = function () {
-  const bintang = localStorage.getItem("bintang_matematika");
-  if (bintang) {
-    document.getElementById("bintang").innerHTML = "⭐ " + bintang + " Bintang";
-  }
-};
-</script>
+  <script>
+    function goKelas(kelas) {
+      window.location.href = "matematika-kelas" + kelas + ".html";
+    }
+  </script>
 
 </body>
-
-
-
-
 </html>

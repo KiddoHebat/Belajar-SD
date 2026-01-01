@@ -3,7 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Lesson 1</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 </head>
+<script><
+
+// BACKGROUND MUSIC
+const bgMusic = new Audio("sounds/bg-music.mp3");
+bgMusic.loop = true;
+bgMusic.volume = 0.3;
+let musicOn = true;
+
+function toggleMusic() {
+  if (musicOn) {
+    bgMusic.pause();
+  } else {
+    bgMusic.play();
+  }
+  musicOn = !musicOn;
+}
+</script>
+
 <body>
 
 <h2>Apa itu Perkalian?</h2>

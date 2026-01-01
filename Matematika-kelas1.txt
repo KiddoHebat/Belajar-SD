@@ -1,0 +1,6 @@
+<h2>📘 Matematika Kelas 1</h2>
+<p>Penjumlahan dasar</p>
+
+<button onclick="location.href='kuis.html'">
+  Mulai Belajar
+</button>
