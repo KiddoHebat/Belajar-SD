@@ -1,107 +1,76 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>KIDDOS HEBAT!!</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-  * {
-    box-sizing: border-box;
-  }
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 480px;
-    margin: auto;
-    padding: 16px;
-  }
-
-  button {
-    width: 100%;
-    padding: 14px;
-    font-size: 1.1rem;
-    border-radius: 12px;
-  }
-</style>
-
+  <!-- WAJIB untuk HP -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
+      margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
       background: #f5f7fb;
-      padding: 20px;
     }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      border: none;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
     .card {
       padding: 20px;
       border-radius: 15px;
       color: white;
       margin-bottom: 15px;
+      font-size: 1.1rem;
     }
+
     .math { background: #4A90E2; }
-    .ipa { background: #6BBF59; }
-    .ips { background: #F5A623; }
+    .ipa  { background: #6BBF59; }
+    .ips  { background: #F5A623; }
   </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 </head>
+
 <body>
 
-
-  <script>
-  let soundAktif = false;
-
-  document.body.addEventListener("click", () => {
-    soundAktif = true;
-  }, { once: true });
-
-  const soundBenar = new Audio("sounds/benar.mp3");
-  const soundSalah = new Audio("sounds/salah.mp3");
-
-  function jawabanBenar() {
-    if (soundAktif) soundBenar.play();
-  }
-
-  function jawabanSalah() {
-    if (soundAktif) soundSalah.play();
-  }
-</script>
-
-
-  <div class="container"></div>
+<div class="container">
 
   <h2>Halo 👋</h2>
-  <p>Ayo belajar hari ini!</p>
+  <p style="text-align:center;">Ayo belajar hari ini!</p>
 
-  <h2>Halo 👋</h2>
-<p>Ayo belajar hari ini!</p>
+  <!-- TOMBOL TEST SUARA (WAJIB ADA) -->
+  <button onclick="playBenar()">🔊 Test Suara Benar</button>
+  <button onclick="playSalah()">🔊 Test Suara Salah</button>
 
-<button onclick="jawabanBenar()">🔊 Test Suara Benar</button>
-<br><br>
-<button onclick="jawabanSalah()">🔊 Test Suara Salah</button>
-
-
-
-    <a href="matematika.html" style="text-decoration:none;">
-  <div class="card math">
-    📘 Matematika <br>
-    ⭐⭐⭐☆☆
-  </div>
-</a>
-
-    📘 Matematika <br>
-    ⭐⭐⭐☆☆
-  </div>
+  <a href="matematika.html" style="text-decoration:none;">
+    <div class="card math">
+      📘 Matematika <br>
+      ⭐⭐⭐☆☆
+    </div>
+  </a>
 
   <div class="card ipa">
     🔬 IPA <br>
@@ -112,6 +81,41 @@
     🌍 IPS <br>
     ⭐☆☆☆☆
   </div>
+
+</div>
+
+<!-- JAVASCRIPT DI PALING BAWAH -->
+<script>
+  // FLAG IZIN SUARA
+  let soundAktif = false;
+
+  // AKTIFKAN SUARA SAAT TAP PERTAMA
+  document.body.addEventListener("click", () => {
+    soundAktif = true;
+  }, { once: true });
+
+  // LOAD AUDIO
+  const soundBenar = new Audio("sounds/benar.mp3");
+  const soundSalah = new Audio("sounds/salah.mp3");
+
+  function playBenar() {
+    if (soundAktif) {
+      soundBenar.currentTime = 0;
+      soundBenar.play();
+    } else {
+      alert("Tap layar sekali dulu untuk aktifkan suara 🔊");
+    }
+  }
+
+  function playSalah() {
+    if (soundAktif) {
+      soundSalah.currentTime = 0;
+      soundSalah.play();
+    } else {
+      alert("Tap layar sekali dulu untuk aktifkan suara 🔊");
+    }
+  }
+</script>
 
 </body>
 </html>
