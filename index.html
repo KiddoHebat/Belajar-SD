@@ -57,6 +57,27 @@
 </head>
 <body>
 
+
+  <script>
+  let soundAktif = false;
+
+  document.body.addEventListener("click", () => {
+    soundAktif = true;
+  }, { once: true });
+
+  const soundBenar = new Audio("sounds/benar.mp3");
+  const soundSalah = new Audio("sounds/salah.mp3");
+
+  function jawabanBenar() {
+    if (soundAktif) soundBenar.play();
+  }
+
+  function jawabanSalah() {
+    if (soundAktif) soundSalah.play();
+  }
+</script>
+
+
   <div class="container"></div>
 
   <h2>Halo 👋</h2>
